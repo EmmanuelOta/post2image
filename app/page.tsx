@@ -270,7 +270,7 @@ export default function Home() {
 					<h2 className="text-3xl font-semibold text-center">
 						Why Choose Post2Image?
 					</h2>
-					<div className="space-y-2 font-medium">
+					<div className="space-y-6 md:space-y-2 font-medium">
 						<p className="text-lg text-stone-800 max-w-3xl">
 							Post2Image stands out as the ultimate tool for
 							converting posts to images. Unlike other tools, it
