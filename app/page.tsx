@@ -221,7 +221,7 @@ export default function Home() {
 				</section>
 
 				<section className="flex items-center justify-center p-14 w-full">
-					<div className="flex flex-col md:flex-row space-x-10 items-center justify-center">
+					<div className="flex flex-col md:flex-row space-x-10 items-center justify-center p-8 md:p-0">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							fill="none"
