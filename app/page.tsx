@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Libre_Baskerville } from "next/font/google";
+import { Libre_Baskerville, Roboto } from "next/font/google";
 
 const libre_baskerville = Libre_Baskerville({
 	weight: "400",
@@ -8,11 +8,20 @@ const libre_baskerville = Libre_Baskerville({
 	style: "italic",
 });
 
+const roboto_font = Roboto({
+	weight: "400",
+	subsets: ["latin"],
+	style: "normal",
+	variable: "--font-roboto",
+});
+
 export default function Home() {
 	return (
-		<div className="flex flex-col min-h-screen bg-stone-50 w-full">
-			<main className="flex flex-col items-center justify-between p-8 md:p-24 bg-stone-50 w-full">
-				<section className="flex flex-col items-center justify-center space-y-3 w-full h-full max-w-2xl">
+		<div
+			className={`${roboto_font.variable} antialiased flex flex-col min-h-screen bg-stone-50 w-full`}
+		>
+			<main className="flex flex-col items-center justify-between bg-stone-50 w-full">
+				<section className="flex flex-col items-center justify-center p-8 md:p-24 space-y-3 w-full h-full max-w-2xl">
 					<img
 						src="/images/post2image.png"
 						width={200}
@@ -33,7 +42,10 @@ export default function Home() {
 						<p className="text-lg text-center font-medium">
 							Convert X and thread posts to images
 						</p>
-						<Input className="focus:outline-none focus:ring-none" />
+						<Input
+							className="focus:outline-none focus:ring-none"
+							placeholder="Paste link to Ig or X post"
+						/>
 						<Button
 							className="w-full max-w-xs cursor-pointer"
 							variant="default"
@@ -42,7 +54,6 @@ export default function Home() {
 						</Button>
 					</div>
 				</section>
-
 
 				<section className="flex flex-col items-center justify-center w-full p-8 md:p-24 space-y-8">
 					<h1 className={`text-3xl ${libre_baskerville.className}`}>
@@ -64,7 +75,9 @@ export default function Home() {
 									d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"
 								/>
 							</svg>
-							<h3 className="text-2xl font-semibold">Fast</h3>
+							<h3 className="text-2xl text-center font-semibold">
+								Fast
+							</h3>
 							<p className="text-center text-stone-800 font-medium">
 								Post2Image is built with speed in mind. It can
 								convert posts to images in a matter of seconds,
@@ -88,7 +101,9 @@ export default function Home() {
 								/>
 							</svg>
 
-							<h3 className="text-2xl font-semibold">Secure</h3>
+							<h3 className="text-2xl text-center font-semibold">
+								Secure
+							</h3>
 							<p className="text-center text-stone-800 font-medium">
 								Post2Image is built with security in mind. Your
 								data is never shared with anyone, and we take
@@ -112,7 +127,9 @@ export default function Home() {
 								/>
 							</svg>
 
-							<h3 className="text-2xl font-semibold">Download</h3>
+							<h3 className="text-2xl text-center font-semibold">
+								Download
+							</h3>
 							<p className="text-center text-stone-800 font-medium">
 								With post2Image, you can download your images in
 								a matter of seconds, so you can share them on
@@ -137,18 +154,143 @@ export default function Home() {
 								/>
 							</svg>
 
-							<h3 className="text-2xl font-semibold">User Friendly</h3>
+							<h3 className="text-2xl text-center font-semibold">
+								User Friendly
+							</h3>
 							<p className="text-center text-stone-800 font-medium">
-								Post2Image is built with user experience in mind.
-								It is easy to use and has a simple and clean
-								interface. You can convert your posts to images
-								in just a few clicks.
+								Post2Image is built with user experience in
+								mind. It is easy to use and has a simple and
+								clean interface. You can convert your posts to
+								images in just a few clicks.
+							</p>
+						</div>
+
+						<div className="flex flex-col items-center justify-center space-y-2 shadow-lg p-8 rounded-lg shadow-stone-300 border border-stone-300 w-full">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								strokeWidth={1.5}
+								stroke="currentColor"
+								className="size-14 fill-stone-600"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 1 1-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 0 0 4.486-6.336l-3.276 3.277a3.004 3.004 0 0 1-2.25-2.25l3.276-3.276a4.5 4.5 0 0 0-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437 1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008Z"
+								/>
+							</svg>
+
+							<h3 className="text-2xl text-center font-semibold">
+								Tool
+							</h3>
+							<p className="text-center text-stone-800 font-medium">
+								Post2Image is a tool that allows you to convert
+								X and thread posts to images. It is built with
+								the latest technologies and is constantly being
+								updated with new features.
+							</p>
+						</div>
+
+						<div className="flex flex-col items-center justify-center space-y-2 shadow-lg p-8 rounded-lg shadow-stone-300 border border-stone-300 w-full">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								strokeWidth={1.5}
+								stroke="currentColor"
+								className="size-14 fill-stone-600"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									d="M12 9.75v6.75m0 0-3-3m3 3 3-3m-8.25 6a4.5 4.5 0 0 1-1.41-8.775 5.25 5.25 0 0 1 10.233-2.33 3 3 0 0 1 3.758 3.848A3.752 3.752 0 0 1 18 19.5H6.75Z"
+								/>
+							</svg>
+
+							<h3 className="text-2xl text-center font-semibold">
+								Unlimited Downloads
+							</h3>
+							<p className="text-center text-stone-800 font-medium">
+								Post2Image allows you to download as many images
+								as you want. There are no limits on the number
+								of images you can download.
 							</p>
 						</div>
 					</div>
 				</section>
+
+				<section className="flex items-center justify-center p-14 w-full">
+					<div className="flex flex-col md:flex-row space-x-10 items-center justify-center">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							fill="none"
+							viewBox="0 0 24 24"
+							strokeWidth={1.5}
+							stroke="currentColor"
+							className="size-96 mb-4"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99"
+							/>
+						</svg>
+						<div className="flex flex-col justify-center space-y-4">
+							<h3 className="text-2xl font-medium">
+								How to convert posts to images
+							</h3>
+							<div>
+								<ol className="list-decimal list-inside space-y-2">
+									<li>
+										Copy the link to the post you want to
+										convert (e.g., from X or Instagram).
+									</li>
+									<li>
+										Paste the link into the input field
+										labeled "Paste link to Ig or X post."
+									</li>
+									<li>
+										Click the "Convert" button to process
+										the post.
+									</li>
+									<li>
+										Once the image is generated, click the
+										"Download" button to save it to your
+										device.
+									</li>
+									<li>Share or use the image as needed.</li>
+								</ol>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section className="flex flex-col items-center justify-center p-14 w-full bg-gradient-to-r from-stone-50 to-stone-100 space-y-6">
+					<h2 className="text-3xl font-semibold text-center">
+						Why Choose Post2Image?
+					</h2>
+					<div className="space-y-2 font-normal">
+						<p className="text-lg text-stone-800 max-w-3xl">
+							Post2Image stands out as the ultimate tool for
+							converting posts to images. Unlike other tools, it
+							ensures that exceptionally long tweets are displayed
+							in full, without the annoying "show more"
+							truncation. This guarantees that you capture the
+							complete content of the post, no matter its length.
+						</p>
+						<p className="text-lg text-stone-800 max-w-3xl">
+							Additionally, Post2Image is the only reliable thread
+							post-to-image converter available. Whether you're
+							converting a single post or an entire thread, you
+							can trust Post2Image to deliver accurate and
+							high-quality results every time.
+						</p>
+					</div>
+				</section>
 			</main>
 			<footer className="flex items-center justify-center p-4 w-full h-24 border-t border-stone-400 w-full bg-stone-100">
+				<p>&copy; {new Date().getFullYear()} Post2Image</p>
 				<p className="text-sm text-stone-500 w-full">
 					By using this service, you agree to our
 					<a className="text-blue-500 hover:underline mx-1">
