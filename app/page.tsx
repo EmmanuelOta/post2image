@@ -291,8 +291,7 @@ export default function Home() {
 					</div>
 				</section>
 				<Faq />
-			</main>
-			<Footer />
+			</main>		
 		</div>
 	);
 }
