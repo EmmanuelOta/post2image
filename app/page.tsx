@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Libre_Baskerville, Roboto } from "next/font/google";
 import Faq from "@/components/Faq";
-import Footer from "@/components/Footer";
 
 const libre_baskerville = Libre_Baskerville({
 	weight: "400",
@@ -42,7 +41,7 @@ export default function Home() {
 							Post2Image
 						</h1>
 						<p className="text-lg text-center font-medium">
-							Convert X and thread posts to images
+							Convert X, Ig and thread posts to images
 						</p>
 						<Input
 							className="focus:outline-none focus:ring-none"
@@ -231,7 +230,7 @@ export default function Home() {
 								viewBox="0 0 24 24"
 								strokeWidth={1.5}
 								stroke="currentColor"
-								className="size-96 mb-4"
+								className="size-44 md:size-96 mb-4"
 							>
 								<path
 									strokeLinecap="round"
