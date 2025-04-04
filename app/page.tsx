@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Libre_Baskerville, Roboto } from "next/font/google";
 import Faq from "@/components/Faq";
+import Footer from "@/components/Footer";
 
 const libre_baskerville = Libre_Baskerville({
 	weight: "400",
@@ -211,7 +212,7 @@ export default function Home() {
 
 							<h3 className="text-2xl text-center font-semibold">
 								Unlimited Downloads
-							</h3>
+								</h3>
 							<p className="text-center text-stone-800 font-medium">
 								Post2Image allows you to download as many images
 								as you want. There are no limits on the number
@@ -291,20 +292,7 @@ export default function Home() {
 				</section>
 				<Faq />
 			</main>
-			<footer className="flex items-center justify-center p-4 w-full h-24 border-t border-stone-400 w-full bg-stone-100">
-				<p>&copy; {new Date().getFullYear()} Post2Image</p>
-				<p className="text-sm text-stone-500 w-full">
-					By using this service, you agree to our
-					<a className="text-blue-500 hover:underline mx-1">
-						terms of service
-					</a>
-					and
-					<a className="text-blue-500 hover:underline mx-1">
-						privacy policy
-					</a>
-					.
-				</p>
-			</footer>
+			<Footer />
 		</div>
 	);
 }
