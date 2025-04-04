@@ -20,14 +20,11 @@ const Footer = () => {
 					</p>
 				</div>
 				<div className="flex space-x-4">
-					<a href="#" className="text-blue-400">
+					<a href="/terms-of-service" className="text-blue-400">
 						Terms of Service
 					</a>
-					<a href="#" className="text-blue-400">
+					<a href="/privacy-policy" className="text-blue-400">
 						Privacy Policy
-					</a>
-					<a href="#" className="text-blue-400">
-						Contact Us
 					</a>
 				</div>
 				<div className="flex space-x-4">
