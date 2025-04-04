@@ -27,9 +27,12 @@ const Footer = () => {
 						Privacy Policy
 					</a>
 				</div>
-				<div className="flex space-x-4">
+				<div
+					className="flex space-x-4"
+					title="Follow me on social media"
+				>
 					<a
-						href="#"
+						href="https://x.com/coder_zi"
 						className="text-stone-800"
 						aria-label="Follow us on X"
 					>
@@ -49,7 +52,7 @@ const Footer = () => {
 						</svg>
 					</a>
 					<a
-						href="#"
+						href="https://www.instagram.com/coder_zi/"
 						className="text-stone-800"
 						aria-label="Follow us on Instagram"
 					>
@@ -74,7 +77,7 @@ const Footer = () => {
 						</svg>
 					</a>
 					<a
-						href="#"
+						href="https://threads.net/coder_zi"
 						className="text-stone-800"
 						aria-label="Follow us on Threads"
 					>
