@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 
 const Faq = () => {
 	// State to track the active accordion index
@@ -51,24 +50,40 @@ const Faq = () => {
 						key={index}
 						className="border border-stone-300 rounded-lg overflow-hidden"
 					>
-						<button
-							onClick={() => toggleAccordion(index)}
-							className="w-full text-left px-6 py-4 bg-stone-50 text-stone-800 font-medium focus:outline-none"
-						>
-							{faq.question}
-						</button>
-						<motion.div
-							initial={{ height: 0 }}
-							animate={{
-								height: activeIndex === index ? "auto" : 0,
-							}}
-							className="overflow-hidden"
-							transition={{ duration: 0.3 }}
+						<div className="flex items-center justify-between px-6 py-4 bg-stone-50 text-stone-800 font-medium">
+							<span>{faq.question}</span>
+							<button
+								onClick={() => toggleAccordion(index)}
+								className={`rounded-full p-2 bg-stone-800 text-white focus:outline-none cursor-pointer hover:bg-stone-700 transition-transform duration-200 ease-in-out ${
+									activeIndex === index ? "rotate-45" : ""
+								}`}
+								aria-label="Toggle FAQ answer"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									strokeWidth={1.5}
+									stroke="currentColor"
+									className="w-4 h-4"
+								>
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										d="M12 4.5v15m7.5-7.5h-15"
+									/>
+								</svg>
+							</button>
+						</div>
+						<div
+							className={`overflow-hidden transition-all duration-300 ${
+								activeIndex === index ? "max-h-screen" : "max-h-0"
+							}`}
 						>
 							<div className="px-6 py-4 bg-stone-100 text-stone-800">
 								{faq.answer}
 							</div>
-						</motion.div>
+						</div>
 					</div>
 				))}
 			</div>
