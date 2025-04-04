@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Libre_Baskerville, Roboto } from "next/font/google";
+import Faq from "@/components/Faq";
 
 const libre_baskerville = Libre_Baskerville({
 	weight: "400",
@@ -288,6 +289,7 @@ export default function Home() {
 						</p>
 					</div>
 				</section>
+				<Faq />
 			</main>
 			<footer className="flex items-center justify-center p-4 w-full h-24 border-t border-stone-400 w-full bg-stone-100">
 				<p>&copy; {new Date().getFullYear()} Post2Image</p>
