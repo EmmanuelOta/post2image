@@ -127,15 +127,8 @@ export default function PrivacyPolicy() {
 				<section className="space-y-4">
 					<h2 className="text-2xl font-semibold">7. Contact Us</h2>
 					<p>
-						If you have any questions about this Privacy Policy,
-						please{" "}
-						<a
-							href="/contact"
-							className="text-blue-500 hover:underline"
-						>
-							contact us
-						</a>
-						.
+						To contact us, check the footer to see our various
+						social media handes.
 					</p>
 				</section>
 
