@@ -241,7 +241,7 @@ export default function Home() {
 								How to convert posts to images
 							</h3>
 							<div>
-								<ol className="list-decimal list-inside space-y-2">
+								<ol className="list-decimal list-inside space-y-2 font-medium">
 									<li>
 										Copy the link to the post you want to
 										convert (e.g., from X or Instagram).
@@ -270,7 +270,7 @@ export default function Home() {
 					<h2 className="text-3xl font-semibold text-center">
 						Why Choose Post2Image?
 					</h2>
-					<div className="space-y-2 font-normal">
+					<div className="space-y-2 font-medium">
 						<p className="text-lg text-stone-800 max-w-3xl">
 							Post2Image stands out as the ultimate tool for
 							converting posts to images. Unlike other tools, it
