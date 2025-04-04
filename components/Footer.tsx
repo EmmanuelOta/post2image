@@ -48,7 +48,7 @@ const Footer = () => {
 							viewBox="0 0 24 24"
 							strokeWidth={1.5}
 							stroke="currentColor"
-							className="w-5 h-5"
+							className="size-7"
 						>
 							<path
 								strokeLinecap="round"
@@ -68,7 +68,7 @@ const Footer = () => {
 							viewBox="0 0 24 24"
 							strokeWidth={1.5}
 							stroke="currentColor"
-							className="w-5 h-5"
+							className="size-7"
 						>
 							<path
 								strokeLinecap="round"
@@ -87,7 +87,11 @@ const Footer = () => {
 						className="text-stone-800"
 						aria-label="Follow us on Threads"
 					>
-						
+						<img
+							src="/images/threads.svg"
+							alt="follow coder_zi on threads"
+							width={30}
+						/>
 					</a>
 				</div>
 			</div>
