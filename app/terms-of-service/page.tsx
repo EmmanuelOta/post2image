@@ -1,6 +1,17 @@
+import { Roboto } from "next/font/google";
+
+const roboto_font = Roboto({
+	weight: "400",
+	subsets: ["latin"],
+	style: "normal",
+	variable: "--font-roboto",
+});
+
 export default function TermsOfService() {
 	return (
-		<div className="bg-stone-50 text-stone-800 min-h-screen py-12 px-6 md:px-24">
+		<div
+			className={`${roboto_font.className} bg-stone-50 text-stone-800 min-h-screen py-12 px-6 md:px-24`}
+		>
 			<div className="max-w-4xl mx-auto space-y-8">
 				<h1 className="text-4xl font-bold text-center">
 					Terms of Service
@@ -50,7 +61,7 @@ export default function TermsOfService() {
 					<p>
 						We value your privacy. Please refer to our{" "}
 						<a
-							href="/privacy"
+							href="/privacy-policy"
 							className="text-blue-500 hover:underline"
 						>
 							Privacy Policy
