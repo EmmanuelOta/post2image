@@ -83,7 +83,7 @@ const Footer = () => {
 						</svg>
 					</a>
 					<a
-						href="https://threads.net/coder_zi"
+						href="https://threads.net/@coder_zi"
 						className="text-stone-800"
 						aria-label="Follow us on Threads"
 					>
