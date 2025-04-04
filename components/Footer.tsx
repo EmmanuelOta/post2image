@@ -10,7 +10,7 @@ const roboto_font = Roboto({
 const Footer = () => {
 	return (
 		<footer
-			className={`${roboto_font.variable} bg-stone-50 text-stone-800 py-6 bg-stone-100 text-stone-800 py-6`}
+			className={`${roboto_font.variable} text-stone-800 py-6 bg-stone-100 text-stone-800`}
 		>
 			<div className="container mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 px-4">
 				<div className="text-center md:text-left">
