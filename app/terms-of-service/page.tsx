@@ -20,7 +20,7 @@ export default function TermsOfService() {
 			<div className="max-w-4xl mx-auto space-y-8">
 				<button
 					onClick={() => router.push("/")}
-					className="inline-flex items-center justify-center text-blue-500 hover:underline font-medium"
+					className="inline-flex items-center justify-center text-blue-500 hover:underline font-medium cursor-pointer"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
