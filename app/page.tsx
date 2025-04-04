@@ -46,7 +46,7 @@ export default function Home() {
 						</p>
 						<Input
 							className="focus:outline-none focus:ring-none"
-							placeholder="Paste link to Ig or X post"
+							placeholder="Paste link to Ig, threads or X post"
 						/>
 						<Button
 							className="w-full max-w-xs cursor-pointer"
@@ -187,7 +187,7 @@ export default function Home() {
 								Tool
 							</h3>
 							<p className="text-center text-stone-800 font-medium">
-								Post2Image is a tool that allows you to convert
+								Post2Image is a tool that allows you to convert Ig,
 								X and thread posts to images. It is built with
 								the latest technologies and is constantly being
 								updated with new features.
@@ -246,11 +246,11 @@ export default function Home() {
 								<ol className="list-decimal list-inside space-y-2 font-medium">
 									<li>
 										Copy the link to the post you want to
-										convert (e.g., from X or Instagram).
+										convert (e.g., from X, threads or Instagram).
 									</li>
 									<li>
 										Paste the link into the input field
-										labeled "Paste link to Ig or X post."
+										labeled "Paste the link to the post."
 									</li>
 									<li>
 										Click the "Convert" button to process
