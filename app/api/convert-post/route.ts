@@ -1,32 +1,7 @@
 // app/api/convert-post/route.ts
 import { NextResponse } from "next/server";
 import { validateLink } from "@/lib/validateLink";
-import puppeteer from "puppeteer-core";
-import chrome from "chrome-aws-lambda";
-
-// Determine the Chrome executable path and launch options based on the environment
-const getOptions = async () => {
-	// For local development (non-Lambda/Vercel environment)
-	if (process.env.NODE_ENV !== "production") {
-		return {
-			args: [],
-			executablePath:
-				process.platform === "win32"
-					? "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
-					: process.platform === "linux"
-					? "/usr/bin/google-chrome"
-					: "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-			headless: true,
-		};
-	}
-
-	// For Vercel/Lambda production environment
-	return {
-		args: chrome.args,
-		executablePath: await chrome.executablePath,
-		headless: true,
-	};
-};
+import puppeteer from "puppeteer";
 
 export async function POST(request: Request) {
 	try {
@@ -41,11 +16,20 @@ export async function POST(request: Request) {
 			);
 		}
 
-		// Get browser options based on environment
-		const options = await getOptions();
+		// Use puppeteer to take a screenshot of the post
+		const browser = await puppeteer.launch({
+			headless: true,
+			args: [
+				"--no-sandbox",
+				"--disable-setuid-sandbox",
+				"--disable-dev-shm-usage",
+				"--disable-accelerated-2d-canvas",
+				"--no-first-run",
+				"--no-zygote",
+				"--disable-gpu",
+			],
+		});
 
-		// Launch browser with appropriate options
-		const browser = await puppeteer.launch(options);
 		const page = await browser.newPage();
 
 		await page.setUserAgent(
@@ -56,103 +40,74 @@ export async function POST(request: Request) {
 		// Set viewport to ensure good quality screenshot
 		await page.setViewport({ width: 600, height: 800 });
 
-		console.log(`Navigating to: ${link}`);
-
-		// Navigate to the page with increased timeout and error handling
-		try {
-			await page.goto(link, {
-				waitUntil: "networkidle2",
-				timeout: 60000,
-			});
-		} catch (error) {
-			console.error("Navigation error:", error);
-			await browser.close();
-			return NextResponse.json(
-				{
-					message:
-						"Failed to load the page. The site might be blocking automated access.",
-				},
-				{ status: 500 }
-			);
-		}
-
-		console.log(`Loaded page for platform: ${platform}`);
+		// Navigate to the page
+		await page.goto(link, { waitUntil: "networkidle2", timeout: 60000 });
 
 		// Different platforms might need different selectors or wait times
-		let selector;
 		switch (platform) {
 			case "X":
-				selector = 'article[data-testid="tweet"]';
+				// Wait for X post to fully load
+				await page.waitForSelector('article[data-testid="tweet"]', {
+					timeout: 60000,
+				});
 				break;
 			case "Instagram":
-				selector = 'article[role="presentation"]';
+				// Wait for Instagram post to fully load
+				await page.waitForSelector('article[role="presentation"]', {
+					timeout: 60000,
+				});
 				break;
 			case "Threads":
-				selector = "article";
+				// Wait for Threads post to fully load
+				await page.waitForSelector("article", { timeout: 60000 });
 				break;
 			case "Facebook":
-				selector = '[data-testid="post_message"]';
+				// Facebook-specific logic
+				await page.waitForSelector('[data-testid="post_message"]', {
+					timeout: 60000,
+				});
 				break;
 			case "TikTok":
-				selector = ".tiktok-1rgp3yt-DivItemContainer";
+				await page.waitForSelector(".tiktok-1rgp3yt-DivItemContainer", {
+					timeout: 60000,
+				});
 				break;
 			default:
 				throw new Error("Unsupported platform");
 		}
 
-		try {
-			// Wait for the selector with timeout
-			console.log(`Waiting for selector: ${selector}`);
-			await page.waitForSelector(selector, { timeout: 30000 });
-		} catch (error) {
-			console.error("Selector wait error:", error);
-			await browser.close();
-			return NextResponse.json(
-				{
-					message: `Could not find the ${platform} post content on the page.`,
-				},
-				{ status: 500 }
-			);
-		}
-
 		// Take screenshot of the post element
+		let element;
 		try {
-			const element = await page.$(selector);
-
-			if (!element) {
-				throw new Error("Post element not found after waiting");
+			if (platform === "X") {
+				element = await page.$('article[data-testid="tweet"]');
+			} else if (platform === "Instagram") {
+				element = await page.$('article[role="presentation"]');
+			} else if (platform === "Threads") {
+				element = await page.$("article");
 			}
 
-			console.log("Taking screenshot");
-			const screenshot = await element.screenshot({
-				type: "png",
-				omitBackground: true,
-			}) as Buffer;
+			if (!element) {
+				throw new Error("Post element not found");
+			}
+
+			const screenshot = await element.screenshot({ type: "png" });
 
 			// Convert buffer to base64 string
 			const base64Image = Buffer.from(screenshot).toString("base64");
 			const imageUrl = `data:image/png;base64,${base64Image}`;
 
 			await browser.close();
-			console.log("Successfully created screenshot");
 
-			return NextResponse.json({
-				imageUrl,
-				platform,
-			});
+			return NextResponse.json({ imageUrl });
 		} catch (error) {
-			console.error("Screenshot error:", error);
 			await browser.close();
 			throw error;
 		}
 	} catch (error) {
 		console.error("Error converting post:", error);
 		return NextResponse.json(
-			{
-				message:
-					"Failed to convert post: " +
-					(error instanceof Error ? error.message : "Unknown error"),
-			},
+			{ message: "Failed to convert post" },
 			{ status: 500 }
 		);
 	}
