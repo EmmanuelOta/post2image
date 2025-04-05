@@ -1,7 +1,18 @@
 // app/api/convert-post/route.ts
 import { NextResponse } from "next/server";
 import { validateLink } from "@/lib/validateLink";
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
+import chrome from "chrome-aws-lambda";
+
+const puppeteerArgs = [
+	"--no-sandbox",
+	"--disable-setuid-sandbox",
+	"--disable-dev-shm-usage",
+	"--disable-accelerated-2d-canvas",
+	"--no-first-run",
+	"--no-zygote",
+	"--disable-gpu",
+];
 
 export async function POST(request: Request) {
 	try {
@@ -19,15 +30,8 @@ export async function POST(request: Request) {
 		// Use puppeteer to take a screenshot of the post
 		const browser = await puppeteer.launch({
 			headless: true,
-			args: [
-				"--no-sandbox",
-				"--disable-setuid-sandbox",
-				"--disable-dev-shm-usage",
-				"--disable-accelerated-2d-canvas",
-				"--no-first-run",
-				"--no-zygote",
-				"--disable-gpu",
-			],
+			executablePath: await chrome.executablePath, 
+			args: puppeteerArgs,
 		});
 
 		const page = await browser.newPage();
@@ -86,7 +90,9 @@ export async function POST(request: Request) {
 				throw new Error("Post element not found");
 			}
 
-			const screenshot = await element.screenshot({ type: "png" });
+			const screenshot = (await element.screenshot({
+				type: "png",
+			})) as Buffer;
 
 			// Convert buffer to base64 string
 			const base64Image = Buffer.from(screenshot).toString("base64");
