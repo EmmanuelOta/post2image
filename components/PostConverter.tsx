@@ -30,6 +30,7 @@ export default function PostConverter() {
 				error: "Invalid link. Please enter a valid X, Instagram, or Threads post link.",
 			});
 			setIsLoading(false);
+			setLink("");
 			return;
 		}
 
@@ -65,6 +66,7 @@ export default function PostConverter() {
 			});
 		} finally {
 			setIsLoading(false);
+			setLink("");
 		}
 	};
 
@@ -84,12 +86,12 @@ export default function PostConverter() {
 			<div className="flex flex-col w-full space-y-3">
 				<Input
 					className="focus:outline-none focus:ring-none"
-					placeholder="Paste link to Ig, threads or X post"
+					placeholder="Paste link to Ig, Threads or X post"
 					value={link}
 					onChange={(e) => setLink(e.target.value)}
 				/>
 				<Button
-					className="w-full max-w-xs cursor-pointer mx-auto"
+					className="w-full max-w-xs cursor-pointer mx-auto disabled:cursor-not-allowed"
 					variant="default"
 					onClick={handleConvert}
 					disabled={isLoading}

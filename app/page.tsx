@@ -1,5 +1,3 @@
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Libre_Baskerville, Roboto } from "next/font/google";
 import Faq from "@/components/Faq";
 import PostConverter from "@/components/PostConverter";
@@ -42,7 +40,7 @@ export default function Home() {
 							Post2Image
 						</h1>
 						<p className="text-lg text-center font-medium">
-							Convert X, Ig and thread posts to images
+							Convert X, Ig and Thread posts to images
 						</p>
 						<PostConverter />
 					</div>
@@ -179,7 +177,7 @@ export default function Home() {
 							</h3>
 							<p className="text-center text-stone-800 font-medium">
 								Post2Image is a tool that allows you to convert
-								Ig, X and thread posts to images. It is built
+								Ig, X and Thread posts to images. It is built
 								with the latest technologies and is constantly
 								being updated with new features.
 							</p>
@@ -240,12 +238,13 @@ export default function Home() {
 								<ol className="list-decimal list-inside space-y-2 font-medium">
 									<li>
 										Copy the link to the post you want to
-										convert (e.g., from X, threads or
+										convert (e.g., from X, Threads or
 										Instagram).
 									</li>
 									<li>
 										Paste the link into the input field
-										labeled "Paste the link to the post."
+										labeled "Paste link to Ig, Threads or X
+										post"
 									</li>
 									<li>
 										Click the "Convert" button to process
