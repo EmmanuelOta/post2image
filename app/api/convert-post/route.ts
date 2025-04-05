@@ -127,7 +127,7 @@ export async function POST(request: Request) {
 			const screenshot = await element.screenshot({
 				type: "png",
 				omitBackground: true,
-			});
+			}) as Buffer;
 
 			// Convert buffer to base64 string
 			const base64Image = Buffer.from(screenshot).toString("base64");
