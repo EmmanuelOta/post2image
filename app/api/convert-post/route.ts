@@ -61,6 +61,14 @@ export async function POST(request: Request) {
 				// Wait for Threads post to fully load
 				await page.waitForSelector("article", { timeout: 60000 });
 				break;
+			case "Facebook":
+				// Facebook-specific logic
+				await page.waitForSelector('[data-testid="post_message"]', {
+					timeout: 10000,
+				});
+				break;
+			default:
+				throw new Error("Unsupported platform");
 		}
 
 		// Take screenshot of the post element

@@ -2,23 +2,28 @@ export function validateLink(link: string): {
 	isValid: boolean;
 	platform: string | null;
 } {
-	// Define regex patterns for each platform
-	const twitterPattern =
-		/^https?:\/\/(www\.)?(twitter\.com|x\.com)\/[A-Za-z0-9_]+\/status\/\d+$/;
-	const instagramPattern =
-		/^https?:\/\/(www\.)?instagram\.com\/p\/[A-Za-z0-9_-]+\/?$/;
-	const threadsPattern =
-		/^https?:\/\/(www\.)?threads\.net\/t\/[A-Za-z0-9_-]+\/?$/;
+	try {
+		const url = new URL(link);
+		const hostname = url.hostname.replace(/^www\.|^m\./, "");
+		const pathname = url.pathname;
 
-	// Check if the link matches any of the patterns
-	if (twitterPattern.test(link)) {
-		return { isValid: true, platform: "X" };
-	} else if (instagramPattern.test(link)) {
-		return { isValid: true, platform: "Instagram" };
-	} else if (threadsPattern.test(link)) {
-		return { isValid: true, platform: "Threads" };
+		const platformPatterns: { [key: string]: RegExp } = {
+			X: /^\/[A-Za-z0-9_]+\/status\/\d+\/?$/,
+			Instagram: /^\/p\/[A-Za-z0-9_-]+\/?$/,
+			Threads: /^\/t\/[A-Za-z0-9_-]+\/?$/,
+			TikTok: /^\/@[\w.-]+\/video\/\d+\/?$/,
+			Facebook:
+				/^\/(?:photo\.php\?fbid=\d+|permalink\.php\?story_fbid=\d+&id=\d+|[\w.-]+\/posts\/\d+|groups\/\d+\/permalink\/\d+)\/?$/,
+		};
+
+		for (const [platform, pattern] of Object.entries(platformPatterns)) {
+			if (pattern.test(pathname)) {
+				return { isValid: true, platform };
+			}
+		}
+
+		return { isValid: false, platform: null };
+	} catch (err) {
+		return { isValid: false, platform: null };
 	}
-
-	// If no match, return false with null platform
-	return { isValid: false, platform: null };
 }

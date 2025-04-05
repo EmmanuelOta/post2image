@@ -27,7 +27,7 @@ export default function PostConverter() {
 			setPostData({
 				platform: "",
 				imageUrl: null,
-				error: "Invalid link. Please enter a valid X, Instagram, or Threads post link.",
+				error: "Invalid link. Please enter a valid X, Instagram, Facebook, Tiktok or Threads post link.",
 			});
 			setIsLoading(false);
 			setLink("");
@@ -86,7 +86,7 @@ export default function PostConverter() {
 			<div className="flex flex-col w-full space-y-3">
 				<Input
 					className="focus:outline-none focus:ring-none"
-					placeholder="Paste link to Ig, Threads or X post"
+					placeholder="Paste link to Ig, Threads, Facebook, Tiktok or X post"
 					value={link}
 					onChange={(e) => setLink(e.target.value)}
 				/>
