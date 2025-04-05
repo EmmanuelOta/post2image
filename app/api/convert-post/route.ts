@@ -19,33 +19,47 @@ export async function POST(request: Request) {
 		// Use puppeteer to take a screenshot of the post
 		const browser = await puppeteer.launch({
 			headless: true,
+			args: [
+				"--no-sandbox",
+				"--disable-setuid-sandbox",
+				"--disable-dev-shm-usage",
+				"--disable-accelerated-2d-canvas",
+				"--no-first-run",
+				"--no-zygote",
+				"--disable-gpu",
+			],
 		});
 
 		const page = await browser.newPage();
+
+		await page.setUserAgent(
+			"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 " +
+				"(KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36"
+		);
 
 		// Set viewport to ensure good quality screenshot
 		await page.setViewport({ width: 600, height: 800 });
 
 		// Navigate to the page
-		await page.goto(link, { waitUntil: "networkidle2" });
+		await page.goto(link, { waitUntil: "networkidle2", timeout: 60000 });
 
 		// Different platforms might need different selectors or wait times
 		switch (platform) {
 			case "X":
 				// Wait for X post to fully load
 				await page.waitForSelector('article[data-testid="tweet"]', {
-					timeout: 5000,
+					timeout: 60000,
 				});
 				break;
 			case "Instagram":
 				// Wait for Instagram post to fully load
 				await page.waitForSelector('article[role="presentation"]', {
-					timeout: 5000,
+					timeout: 60000,
 				});
 				break;
 			case "Threads":
 				// Wait for Threads post to fully load
-				await page.waitForSelector("article", { timeout: 5000 });
+				await page.waitForSelector("article", { timeout: 60000 });
 				break;
 		}
 
