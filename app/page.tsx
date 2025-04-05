@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Libre_Baskerville, Roboto } from "next/font/google";
 import Faq from "@/components/Faq";
+import PostConverter from "@/components/PostConverter";
 
 const libre_baskerville = Libre_Baskerville({
 	weight: "400",
@@ -43,16 +44,7 @@ export default function Home() {
 						<p className="text-lg text-center font-medium">
 							Convert X, Ig and thread posts to images
 						</p>
-						<Input
-							className="focus:outline-none focus:ring-none"
-							placeholder="Paste link to Ig, threads or X post"
-						/>
-						<Button
-							className="w-full max-w-xs cursor-pointer"
-							variant="default"
-						>
-							Convert
-						</Button>
+						<PostConverter />
 					</div>
 				</section>
 
