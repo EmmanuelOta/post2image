@@ -36,7 +36,7 @@ export default function PostConverter() {
 
 		try {
 			// Make an API call to your backend to convert the post
-			const response = await fetch("/api/convert-post", {
+			const response = await fetch(`${process.env.NEXT_PUBLIC_POST2IMAGE_FIREBASE_BACKEND}`, {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
