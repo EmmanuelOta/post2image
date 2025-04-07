@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { validateLink } from "@/lib/validateLink";
 import { ClipLoader } from "react-spinners";
+import { Download } from "lucide-react";
 
 interface PostData {
 	platform: string | null;
@@ -108,7 +109,7 @@ export default function PostConverter() {
 							Converting...
 							<ClipLoader
 								loading={isLoading}
-								color="#27272A"
+								color="#e4e4e7"
 								size={25}
 								className="ml-2"
 							/>
@@ -126,7 +127,7 @@ export default function PostConverter() {
 			)}
 
 			{postData?.imageUrl && (
-				<div className="flex flex-col items-center space-y-4 w-full">
+				<div className="flex flex-col items-center space-y-4 mt-4 w-full">
 					<div className="border border-stone-300 rounded-lg overflow-hidden max-w-lg w-full">
 						<img
 							src={postData.imageUrl}
@@ -135,11 +136,11 @@ export default function PostConverter() {
 						/>
 					</div>
 					<Button
-						className="w-full max-w-xs cursor-pointer inline-flex items-center justify-center"
+						className="w-full max-w-xs cursor-pointer inline-flex items-center justify-center group"
 						variant={"default"}
 						onClick={handleDownload}
 					>
-						Download Image
+						Download Image <Download className="ml-2 group-hover:translate-y-1 transition-transform duration-200 ease-in-out" />
 					</Button>
 				</div>
 			)}
