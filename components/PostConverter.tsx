@@ -110,7 +110,7 @@ export default function PostConverter() {
 							<ClipLoader
 								loading={isLoading}
 								color="#e4e4e7"
-								size={25}
+								size={20}
 								className="ml-2"
 							/>
 						</>
