@@ -89,7 +89,7 @@ export default function PostConverter() {
 			<div className="flex flex-col w-full space-y-3">
 				<Input
 					className="focus:outline-none focus:ring-none"
-					placeholder="Paste link to Ig, Threads, Facebook, Tiktok or X post"
+					placeholder="Paste link to post"
 					value={link}
 					onChange={(e) => setLink(e.target.value)}
 				/>
