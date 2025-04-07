@@ -89,6 +89,12 @@ export default function PostConverter() {
 		}
 	};
 
+	const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter' && !isLoading && link.trim()) {
+            handleConvert();
+        }
+    };
+
 	return (
 		<div className="flex flex-col items-center w-full space-y-4">
 			<div className="flex flex-col w-full space-y-3">
@@ -97,6 +103,7 @@ export default function PostConverter() {
 					placeholder="Paste link to post"
 					value={link}
 					onChange={(e) => setLink(e.target.value)}
+					onKeyDown={handleKeyPress}
 				/>
 				<Button
 					className="w-full max-w-xs cursor-pointer mx-auto disabled:cursor-not-allowed"
