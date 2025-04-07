@@ -4,9 +4,10 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { validateLink } from "@/lib/validateLink";
+import { ClipLoader } from "react-spinners";
 
 interface PostData {
-	platform: string;
+	platform: string | null;
 	imageUrl: string | null;
 	error: string | null;
 }
@@ -54,7 +55,7 @@ export default function PostConverter() {
 			}
 
 			setPostData({
-				platform: data.platform,
+				platform, // Use the platform from validateLink instead of data.platform
 				imageUrl: data.imageUrl,
 				error: null,
 			});
@@ -77,8 +78,9 @@ export default function PostConverter() {
 		if (postData?.imageUrl) {
 			const link = document.createElement("a");
 			link.href = postData.imageUrl;
+			// Use nullish coalescing to provide a default value
 			link.download = `post2image-${
-				postData.platform?.toLowerCase() || "download"
+				postData.platform?.toLowerCase() ?? "post"
 			}-${Date.now()}.png`;
 			document.body.appendChild(link);
 			link.click();
@@ -101,7 +103,19 @@ export default function PostConverter() {
 					onClick={handleConvert}
 					disabled={isLoading}
 				>
-					{isLoading ? "Converting..." : "Convert"}
+					{isLoading ? (
+						<>
+							Converting...
+							<ClipLoader
+								loading={isLoading}
+								color="#27272A"
+								size={25}
+								className="ml-2"
+							/>
+						</>
+					) : (
+						"Convert"
+					)}
 				</Button>
 			</div>
 
@@ -122,7 +136,7 @@ export default function PostConverter() {
 					</div>
 					<Button
 						className="w-full max-w-xs cursor-pointer inline-flex items-center justify-center"
-						variant="outline"
+						variant={"default"}
 						onClick={handleDownload}
 					>
 						Download Image
