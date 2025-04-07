@@ -35,7 +35,7 @@ export default function PostConverter() {
 		}
 
 		try {
-			// Make an API call to your backend to convert the post
+			/** // Make an API call to your backend to convert the post
 			const response = await fetch(
 				`${process.env.NEXT_PUBLIC_POST2IMAGE_FIREBASE_BACKEND}`,
 				{
@@ -45,7 +45,15 @@ export default function PostConverter() {
 					},
 					body: JSON.stringify({ link, platform }),
 				}
-			);
+			);*/
+			// Make an API call to your backend to convert the post
+			const response = await fetch("/api/convert-post", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ link, platform }),
+			});
 
 			const data = await response.json();
 
@@ -77,7 +85,9 @@ export default function PostConverter() {
 		if (postData?.imageUrl) {
 			const link = document.createElement("a");
 			link.href = postData.imageUrl;
-			link.download = `post2image-${postData.platform.toLowerCase()}-${Date.now()}.png`;
+			link.download = `post2image-${
+				postData.platform?.toLowerCase() || "download"
+			}-${Date.now()}.png`;
 			document.body.appendChild(link);
 			link.click();
 			document.body.removeChild(link);

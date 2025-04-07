@@ -40,7 +40,7 @@ export default function Home() {
 							Post2Image
 						</h1>
 						<p className="text-lg text-center font-medium">
-							Convert Ig, Threads, Facebook, Tiktok or X and Thread posts to images
+							Convert Ig, Threads, Facebook, Tiktok and X posts to images
 						</p>
 						<PostConverter />
 					</div>
