@@ -29,7 +29,7 @@ export default function PostConverter() {
 			setPostData({
 				platform: "",
 				imageUrl: null,
-				error: "Invalid link. Please enter a valid X, Instagram, Facebook, Tiktok or Threads post link.",
+				error: "Invalid link. Please enter a valid X, Instagram, or Threads post link.",
 			});
 			setIsLoading(false);
 			setLink("");
@@ -117,7 +117,7 @@ export default function PostConverter() {
 							<ClipLoader
 								loading={isLoading}
 								color="#e4e4e7"
-								size={20}
+								size={22}
 								className="ml-2"
 							/>
 						</>
